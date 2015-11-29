@@ -7,6 +7,7 @@ ttaf2srt subtitlefilettafinput.xml > output.srt
 From https://github.com/haraldF/ttaf2srt
 edited for 'SWR - Pälzisch im Abgang' subtitles
 www.swr.de/paelzisch-im-abgang/
+and 'Tatort' subtitles.
 """
 """
 From https://github.com/haraldF/ttaf2srt
@@ -50,7 +51,9 @@ def parseStyles(styles):
         result[style.getAttribute('xml:id')] = style.getAttribute('tts:color')
     return result
 
-xmldoc = minidom.parse(sys.argv[1])
+with open(sys.argv[1]) as f:
+    xmldoc = f.read().replace('\n', ' ').replace('\r', '')
+xmldoc = minidom.parseString(xmldoc)
 
 header = xmldoc.getElementsByTagName('tt:head')
 if len(header):
