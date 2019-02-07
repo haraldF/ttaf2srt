@@ -71,7 +71,8 @@ for item in itemlist:
     if item.hasAttribute('xml:id'):
         dumpHeader(item, subCount)
         subCount += 1
-        color = styles[item.getAttribute("style")]
+        if item.hasAttribute('style'):
+            color = styles[item.getAttribute("style")]
         if color:
             print("<font color=\"" + color + "\">", end="")
         dumpText(item)
